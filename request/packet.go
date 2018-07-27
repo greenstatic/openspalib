@@ -4,12 +4,12 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"errors"
-	"net"
+	"github.com/greenstatic/openspalib"
 	"github.com/greenstatic/openspalib/cryptography"
 	"github.com/greenstatic/openspalib/header"
 	"github.com/greenstatic/openspalib/tools"
+	"net"
 	"time"
-	"github.com/greenstatic/openspalib"
 )
 
 const (

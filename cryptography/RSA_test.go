@@ -2,8 +2,8 @@ package cryptography
 
 import (
 	"crypto/rsa"
-	"math/big"
 	"github.com/greenstatic/openspalib/tools"
+	"math/big"
 	"testing"
 )
 

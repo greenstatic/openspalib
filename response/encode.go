@@ -1,10 +1,10 @@
 package response
 
 import (
-	"time"
 	"bytes"
 	"encoding/binary"
 	"errors"
+	"time"
 )
 
 // Encodes the packet payload according to the OpenSPA specification
@@ -21,14 +21,14 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	timestampBin := encodeTimestamp(p.Timestamp)
 
 	for i := 0; i < timestampSize; i++ {
-		payloadBuff[offset + i] = timestampBin[i]
+		payloadBuff[offset+i] = timestampBin[i]
 	}
 
 	offset += timestampSize
 
 	// Nonce - 24 bits = 3 bytes
 	for i := 0; i < nonceSize; i++ {
-		payloadBuff[offset + i] = p.Nonce[i]
+		payloadBuff[offset+i] = p.Nonce[i]
 	}
 
 	offset += nonceSize
@@ -44,7 +44,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	startPort := encodePort(p.StartPort)
 
 	for i := 0; i < startPortSize; i++ {
-		payloadBuff[offset + i] = startPort[i]
+		payloadBuff[offset+i] = startPort[i]
 	}
 
 	offset += startPortSize
@@ -54,7 +54,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	endPort := encodePort(p.EndPort)
 
 	for i := 0; i < startPortSize; i++ {
-		payloadBuff[offset + i] = endPort[i]
+		payloadBuff[offset+i] = endPort[i]
 	}
 
 	offset += endPortSize
@@ -64,7 +64,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	duration := encodeDuration(p.Duration)
 
 	for i := 0; i < durationSize; i++ {
-		payloadBuff[offset + i] = duration[i]
+		payloadBuff[offset+i] = duration[i]
 	}
 
 	offset += durationSize
@@ -78,7 +78,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	// Reserved - 40 bits = 5 byte
 	const reservedSize = 5 // bytes
 	for i := 0; i < reservedSize; i++ {
-		payloadBuff[offset + i] = 0
+		payloadBuff[offset+i] = 0
 	}
 
 	offset += reservedSize

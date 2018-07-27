@@ -6,10 +6,10 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"net"
 	"github.com/greenstatic/openspalib"
 	"github.com/greenstatic/openspalib/header"
 	"github.com/greenstatic/openspalib/tools"
+	"net"
 	"time"
 )
 
@@ -41,7 +41,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// UNIX Timestamp - 64 bits = 8 bytes
 	const timestampSize = 8 // bytes
-	timestamp, err := decodeTimestamp(data[offset : offset + timestampSize])
+	timestamp, err := decodeTimestamp(data[offset : offset+timestampSize])
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -51,7 +51,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// Client device ID - 128 bits = 16 bytes
 	const clientDeviceIdSize = 16 //bytes
-	clientDeviceID, err := decodeClientDeviceID(data[offset : offset + clientDeviceIdSize])
+	clientDeviceID, err := decodeClientDeviceID(data[offset : offset+clientDeviceIdSize])
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -61,7 +61,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// Nonce - 24 bits = 3 bytes
 	const nonceSize = 3 // bytes
-	p.Nonce = data[offset : offset + nonceSize]
+	p.Nonce = data[offset : offset+nonceSize]
 	offset += nonceSize
 
 	// Protocol - 8 bits = 1 byte
@@ -71,7 +71,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// Start Port - 16 bits = 2 bytes
 	const startPortSize = 2 // bytes
-	startPort, err := decodePort(data[offset : offset + startPortSize])
+	startPort, err := decodePort(data[offset : offset+startPortSize])
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -81,7 +81,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// End Port - 16 bits = 2 bytes
 	const endPortSize = 2 // bytes
-	endPort, err := decodePort(data[offset : offset + endPortSize])
+	endPort, err := decodePort(data[offset : offset+endPortSize])
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -114,14 +114,14 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// Client Public IP - 128 bits = 16 bytes - could be IPv4 or IPv6
 	const clientPublicIPSize = 16 // bytes
-	clientIP, err := BinIPAddressToIP(data[offset : offset + clientPublicIPSize])
+	clientIP, err := BinIPAddressToIP(data[offset : offset+clientPublicIPSize])
 
 	p.ClientPublicIP = clientIP
 	offset += clientPublicIPSize
 
 	// Server Public IP - 128 bit = 16 bytes - could be IPv4 or IPv6
 	const serverPublicIPSize = 16 //bytes
-	serverIP, err := BinIPAddressToIP(data[offset : offset + serverPublicIPSize])
+	serverIP, err := BinIPAddressToIP(data[offset : offset+serverPublicIPSize])
 
 	p.ServerPublicIP = serverIP
 	offset += serverPublicIPSize

@@ -1,14 +1,14 @@
 package response
 
 import (
-	"time"
-	"github.com/greenstatic/openspalib/header"
-	"github.com/greenstatic/openspalib/tools"
-	"errors"
 	"crypto/rand"
 	"crypto/rsa"
-	"github.com/greenstatic/openspalib/cryptography"
+	"errors"
 	"github.com/greenstatic/openspalib"
+	"github.com/greenstatic/openspalib/cryptography"
+	"github.com/greenstatic/openspalib/header"
+	"github.com/greenstatic/openspalib/tools"
+	"time"
 )
 
 const (
@@ -19,12 +19,12 @@ const (
 )
 
 type packetPayload struct {
-	Timestamp time.Time
-	Nonce []byte
-	Protocol byte
-	StartPort uint16
-	EndPort uint16
-	Duration uint16
+	Timestamp       time.Time
+	Nonce           []byte
+	Protocol        byte
+	StartPort       uint16
+	EndPort         uint16
+	Duration        uint16
 	SignatureMethod byte
 }
 
@@ -37,14 +37,13 @@ type Packet struct {
 }
 
 type New struct {
-	Protocol byte
-	StartPort uint16
-	EndPort uint16
-	Duration uint16
-	SignatureMethod byte
+	Protocol         byte
+	StartPort        uint16
+	EndPort          uint16
+	Duration         uint16
+	SignatureMethod  byte
 	EncryptionMethod byte
 }
-
 
 // Creates a response packet struct and uses the fields of the New struct
 // for the packet payload.
@@ -106,7 +105,6 @@ func (n *New) Create() (Packet, error) {
 
 	return p, nil
 }
-
 
 // Decodes an encrypted OpenSPA response packet and returns a Packet struct.
 // If we are unable to decode the packet we will return an error.

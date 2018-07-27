@@ -1,8 +1,8 @@
 package response
 
 import (
-	"strconv"
 	"github.com/greenstatic/openspalib/tools"
+	"strconv"
 )
 
 // Returns the timestamp as a string

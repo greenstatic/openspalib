@@ -1,10 +1,10 @@
 package response
 
 import (
-	"errors"
-	"github.com/greenstatic/openspalib/header"
 	"crypto/rsa"
+	"errors"
 	"github.com/greenstatic/openspalib/cryptography"
+	"github.com/greenstatic/openspalib/header"
 )
 
 // Checks if we are allowed to encrypt data. Returns an error if we
@@ -50,7 +50,6 @@ func (p *Packet) AddEncryptionData(ciphertext []byte) error {
 	p.Encrypted = ciphertext
 	return nil
 }
-
 
 // Encrypts the byte data using 2048 bit RSA with AES 256-bit CBC mode and adds it to the
 // packet.

@@ -1,10 +1,10 @@
 package response
 
 import (
-	"errors"
 	"crypto/rsa"
-	"github.com/greenstatic/openspalib/cryptography"
+	"errors"
 	"github.com/greenstatic/openspalib"
+	"github.com/greenstatic/openspalib/cryptography"
 )
 
 // Returns the signature data to sign (header+payload).

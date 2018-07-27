@@ -1,14 +1,14 @@
 package response
 
 import (
-	"github.com/greenstatic/openspalib/header"
-	"errors"
-	"time"
 	"bytes"
 	"encoding/binary"
-	"github.com/greenstatic/openspalib/tools"
+	"errors"
 	"fmt"
 	"github.com/greenstatic/openspalib"
+	"github.com/greenstatic/openspalib/header"
+	"github.com/greenstatic/openspalib/tools"
+	"time"
 )
 
 // Returns the data slice without the header (note, here we simply cut off
@@ -20,7 +20,6 @@ func removeHeader(data []byte) ([]byte, error) {
 
 	return data[header.Size:], nil
 }
-
 
 // Decodes the packet payload according to the OpenSPA specification
 // for request packet payload.
@@ -40,7 +39,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// UNIX Timestamp - 64 bits = 8 bytes
 	const timestampSize = 8 // bytes
-	timestamp, err := decodeTimestamp(data[offset : offset + timestampSize])
+	timestamp, err := decodeTimestamp(data[offset : offset+timestampSize])
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -50,7 +49,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// Nonce - 24 bits = 3 bytes
 	const nonceSize = 3 // bytes
-	p.Nonce = data[offset : offset + nonceSize]
+	p.Nonce = data[offset : offset+nonceSize]
 	offset += nonceSize
 
 	// Protocol - 8 bits = 1 byte
@@ -60,7 +59,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// Start Port - 16 bits = 2 bytes
 	const startPortSize = 2 // bytes
-	startPort, err := decodePort(data[offset : offset + startPortSize])
+	startPort, err := decodePort(data[offset : offset+startPortSize])
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -70,7 +69,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// End Port - 16 bits = 2 bytes
 	const endPortSize = 2 // bytes
-	endPort, err := decodePort(data[offset : offset + endPortSize])
+	endPort, err := decodePort(data[offset : offset+endPortSize])
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -80,7 +79,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// Duration - 16 bits = 2 byte
 	const durationSize = 2 // bytes
-	duration, err := decodeDuration(data[offset : offset + durationSize])
+	duration, err := decodeDuration(data[offset : offset+durationSize])
 	if err != nil {
 		return packetPayload{}, nil, err
 	}

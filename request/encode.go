@@ -5,8 +5,8 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"errors"
-	"net"
 	"github.com/greenstatic/openspalib/tools"
+	"net"
 	"strings"
 	"time"
 )
@@ -25,7 +25,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	timestampBin := encodeTimestamp(p.Timestamp)
 
 	for i := 0; i < timestampSize; i++ {
-		payloadBuff[offset + i] = timestampBin[i]
+		payloadBuff[offset+i] = timestampBin[i]
 	}
 
 	offset += timestampSize
@@ -38,14 +38,14 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	}
 
 	for i := 0; i < clientDeviceIdSize; i++ {
-		payloadBuff[offset + i] = clientDeviceId[i]
+		payloadBuff[offset+i] = clientDeviceId[i]
 	}
 
 	offset += clientDeviceIdSize
 
 	// Nonce - 24 bits = 3 bytes
 	for i := 0; i < nonceSize; i++ {
-		payloadBuff[offset + i] = p.Nonce[i]
+		payloadBuff[offset+i] = p.Nonce[i]
 	}
 
 	offset += nonceSize
@@ -60,7 +60,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	startPort := encodePort(p.StartPort)
 
 	for i := 0; i < startPortSize; i++ {
-		payloadBuff[offset + i] = startPort[i]
+		payloadBuff[offset+i] = startPort[i]
 	}
 
 	offset += startPortSize
@@ -70,7 +70,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	endPort := encodePort(p.EndPort)
 
 	for i := 0; i < startPortSize; i++ {
-		payloadBuff[offset + i] = endPort[i]
+		payloadBuff[offset+i] = endPort[i]
 	}
 
 	offset += endPortSize
@@ -93,7 +93,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 
 	// set all values to 0
 	for i := 0; i < reservedSize; i++ {
-		payloadBuff[offset + i] = 0
+		payloadBuff[offset+i] = 0
 	}
 
 	offset += reservedSize
@@ -106,7 +106,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	}
 
 	for i := 0; i < clientPublicIPSize; i++ {
-		payloadBuff[offset + i] = clientPublicIP[i]
+		payloadBuff[offset+i] = clientPublicIP[i]
 	}
 
 	offset += clientPublicIPSize
@@ -119,7 +119,7 @@ func (p *packetPayload) Encode() ([]byte, error) {
 	}
 
 	for i := 0; i < serverPublicIPSize; i++ {
-		payloadBuff[offset + i] = serverPublicIP[i]
+		payloadBuff[offset+i] = serverPublicIP[i]
 	}
 
 	offset += serverPublicIPSize

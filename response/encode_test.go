@@ -1,9 +1,9 @@
 package response
 
 import (
+	"github.com/greenstatic/openspalib/tools"
 	"testing"
 	"time"
-	"github.com/greenstatic/openspalib/tools"
 )
 
 func TestTimestamp(t *testing.T) {

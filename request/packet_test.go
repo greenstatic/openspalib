@@ -1,9 +1,9 @@
 package request
 
 import (
-	"net"
 	"github.com/greenstatic/openspalib"
 	"github.com/greenstatic/openspalib/header"
+	"net"
 	"testing"
 	"time"
 )

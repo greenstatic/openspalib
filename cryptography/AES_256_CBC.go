@@ -20,7 +20,7 @@ func AES_256_CBC_encrypt(plaintext []byte, key []byte, iv []byte) ([]byte, error
 	const ivSize = aes.BlockSize
 
 	// check just to be sure that the plaintext body is a multiple of the AES block size
-	if len(plaintext) % aes.BlockSize != 0 {
+	if len(plaintext)%aes.BlockSize != 0 {
 		return nil, errors.New("tried to encrypt using AES-256-CBC plaintext that is not a multiple of the block size")
 	}
 
@@ -54,7 +54,7 @@ func AES_256_CBC_encrypt(plaintext []byte, key []byte, iv []byte) ([]byte, error
 // Inspired by the example at: https://golang.org/pkg/crypto/cipher/#NewCBCDecrypter
 func AES_256_CBC_decrypt(ciphertext []byte, key []byte) ([]byte, error) {
 
-	if len(ciphertext) % aes.BlockSize != 0 {
+	if len(ciphertext)%aes.BlockSize != 0 {
 		return nil, errors.New("tried to decrypt using AES-256-CBC ciphertext that is not a multiple of the block size")
 	}
 

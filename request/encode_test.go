@@ -1,12 +1,11 @@
 package request
 
 import (
-	"net"
 	"github.com/greenstatic/openspalib"
 	"github.com/greenstatic/openspalib/tools"
+	"net"
 	"testing"
 	"time"
-
 )
 
 func TestEncode(t *testing.T) {
