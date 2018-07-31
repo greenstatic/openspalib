@@ -90,6 +90,10 @@ func (n *New) Create() (Packet, error) {
 		return Packet{}, errors.New("unsupported end port")
 	}
 
+	if n.StartPort > n.EndPort {
+		return Packet{}, errors.New("start port is larger than end port")
+	}
+
 	// Check if the client public IP is present
 	if len(n.ClientPublicIP) == 0 {
 		return Packet{}, errors.New("client public ip is empty")
