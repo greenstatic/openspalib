@@ -22,6 +22,8 @@ func ConvertProtoStrToByte(proto string) (byte, error) {
 		return openspalib.Protocol_UDP, nil
 	case "IPV4":
 		return openspalib.Protocol_IPV4, nil
+	case "ICMPv6":
+		return openspalib.Protocol_ICMPv6, nil
 	default:
 		return 0x0, errors.New("unsupported protocol")
 	}
@@ -40,6 +42,8 @@ func ConvertProtoByteToStr(b byte) string {
 		return "UDP"
 	case openspalib.Protocol_IPV4:
 		return "IPV4"
+	case openspalib.Protocol_ICMPv6:
+		return "ICMPv6"
 	default:
 		return ""
 	}

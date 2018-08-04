@@ -4,10 +4,11 @@ const (
 	Version = 1 // version of the protocol
 
 	// Protocol numbers are according to: https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
-	Protocol_ICMP = 1
-	Protocol_IPV4 = 4
-	Protocol_TCP  = 6
-	Protocol_UDP  = 17
+	Protocol_ICMP   = 1
+	Protocol_IPV4   = 4
+	Protocol_TCP    = 6
+	Protocol_UDP    = 17
+	Protocol_ICMPv6 = 58
 
 	// Encryption methods
 	EncryptionMethod_RSA2048_AES256CBC = 1
