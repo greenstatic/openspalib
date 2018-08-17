@@ -49,6 +49,18 @@ func ConvertProtoByteToStr(b byte) string {
 	}
 }
 
+// Returns if the port can be equal to zero for the specified protocol.
+func PortCanBeZero(protocol byte) bool {
+	switch protocol {
+	case openspalib.Protocol_TCP:
+		return false
+	case openspalib.Protocol_UDP:
+		return false
+	default:
+		return true
+	}
+}
+
 // Converts a signature method constant to a string.
 func ConvertSignatureMethodByteToStr(b byte) string {
 	switch b {

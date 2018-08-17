@@ -71,7 +71,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// Start Port - 16 bits = 2 bytes
 	const startPortSize = 2 // bytes
-	startPort, err := decodePort(data[offset : offset+startPortSize])
+	startPort, err := decodePort(data[offset : offset+startPortSize], p.Protocol)
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -81,7 +81,7 @@ func decode(data []byte) (p packetPayload, signature []byte, err error) {
 
 	// End Port - 16 bits = 2 bytes
 	const endPortSize = 2 // bytes
-	endPort, err := decodePort(data[offset : offset+endPortSize])
+	endPort, err := decodePort(data[offset : offset+endPortSize], p.Protocol)
 	if err != nil {
 		return packetPayload{}, nil, err
 	}
@@ -181,10 +181,11 @@ func decodeClientDeviceID(data []byte) (string, error) {
 
 // Decodes a 2-byte port. Port 0 is disallowed and will trigger
 // an error.
-func decodePort(data []byte) (uint16, error) {
+func decodePort(data []byte, protocol byte) (uint16, error) {
 	port := binary.BigEndian.Uint16(data)
 
-	if port == 0 {
+	portCanBeZero := tools.PortCanBeZero(protocol)
+	if !portCanBeZero && port == 0 {
 		return 0, errors.New("port 0 is disallowed")
 	}
 

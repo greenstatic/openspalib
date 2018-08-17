@@ -69,12 +69,17 @@ func (n *New) Create() (Packet, error) {
 	// check is a bit dumb since we compare if the port is larger than
 	// maxPort even though StartPort/EndPort are uint16 - meaning they
 	// can never be larger the maxPort.
-	if n.StartPort == 0 || n.StartPort > maxPort {
+	portCanBeZero := tools.PortCanBeZero(n.Protocol)
+	if (!portCanBeZero && n.StartPort == 0) || n.StartPort > maxPort {
 		return Packet{}, errors.New("unsupported start port")
 	}
 
-	if n.EndPort == 0 || n.EndPort > maxPort {
+	if (!portCanBeZero && n.EndPort == 0) || n.EndPort > maxPort {
 		return Packet{}, errors.New("unsupported end port")
+	}
+
+	if n.StartPort > n.EndPort {
+		return Packet{}, errors.New("start port is larger than end port")
 	}
 
 	// Generate a random nonce
